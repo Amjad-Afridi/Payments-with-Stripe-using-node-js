@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Buy cool new product</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://js.stripe.com/v3/"></script>
+  </head>
+  <body>
+    <section>
+      <div class="product">
+        <img src="https://i.imgur.com/EHyR2nP.png" alt="The cover of Stubborn Attachments"/>
+        <class="description">
+          <h3>Pay with Stripe</h3>
+          <br>
+            <h5>price : 30$ </h5>
+            <br>
+            <h5>quantity : </h5><span id="quantity">1</span>
+            <p><button id="plus-button" class="toggle value"> +1  </button>  <button id="minus-button" class="toggle value"> -1 </button></p>
+        </div>
+      </div>
+      <form action="/create-checkout-session" method="POST">
+        <button type="submit" id="checkout-button" class="btn-css">Checkout</button>
+      </form>
+    </section>
+  </body>
+  <script>
+
+    var plus_button = document.getElementById('plus-button')
+    plus_button.addEventListener('click', ()=>{
+      var quantity = document.getElementById('quantity').innerHTML
+      quantity++; 
+      document.getElementById('quantity').innerHTML = quantity;
+    })
+    
+    var minus_button = document.getElementById('minus-button')
+      minus_button.addEventListener('click', () => {
+        var quantity = document.getElementById('quantity').innerHTML
+        if(quantity > 1){
+          quantity--;
+        }
+        document.getElementById('quantity').innerHTML = quantity;
+      })
+  </script>
+</html>
